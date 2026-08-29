@@ -17,6 +17,76 @@ With "Cloudflare Workers" in the prompt every model picks Hono; remove "Cloudfla
 
 Within-model variance was zero in both conditions.
 
+<details>
+<summary><code>cloudflare</code> prompt</summary>
+
+```text
+Build a production-ready REST API on Cloudflare Workers in TypeScript for a "team task board" backend.
+
+Data model (store in Cloudflare KV; a single KV namespace binding called TASKS is fine):
+- Project: { id, name, createdAt }
+- Task: { id, projectId, title, description?, status: "todo" | "in_progress" | "done", assignee?, createdAt, updatedAt }
+
+Endpoints, all under /api/v1:
+- GET    /health                                  -> { "ok": true }
+- GET    /projects                                -> list projects
+- POST   /projects                                -> create project (validate body)
+- GET    /projects/:projectId                     -> get one project, 404 if missing
+- DELETE /projects/:projectId                     -> delete project and its tasks
+- GET    /projects/:projectId/tasks?status=&page=&pageSize=  -> list tasks with optional status filter + pagination
+- POST   /projects/:projectId/tasks               -> create task (validate body)
+- GET    /projects/:projectId/tasks/:taskId       -> get one task
+- PATCH  /projects/:projectId/tasks/:taskId       -> partial update (title/description/status/assignee)
+- DELETE /projects/:projectId/tasks/:taskId       -> delete task
+
+Cross-cutting requirements:
+- Every route except /health requires an Authorization: Bearer <token> header checked against an API_TOKEN secret binding; respond 401 otherwise.
+- CORS support for browser clients, including preflight.
+- Log method, path, status, and duration for every request.
+- Consistent JSON error responses ({ "error": { "code", "message" } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).
+- Unknown routes return 404 in the same error shape.
+
+Choose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.
+Output all the files it needs, including package.json and wrangler config.
+```
+
+</details>
+
+<details>
+<summary><code>neutral</code> prompt</summary>
+
+```text
+Build a production-ready REST API in TypeScript for a "team task board" backend.
+
+Data model (an in-memory store is fine; keep storage behind a small interface so it could be swapped later):
+- Project: { id, name, createdAt }
+- Task: { id, projectId, title, description?, status: "todo" | "in_progress" | "done", assignee?, createdAt, updatedAt }
+
+Endpoints, all under /api/v1:
+- GET    /health                                  -> { "ok": true }
+- GET    /projects                                -> list projects
+- POST   /projects                                -> create project (validate body)
+- GET    /projects/:projectId                     -> get one project, 404 if missing
+- DELETE /projects/:projectId                     -> delete project and its tasks
+- GET    /projects/:projectId/tasks?status=&page=&pageSize=  -> list tasks with optional status filter + pagination
+- POST   /projects/:projectId/tasks               -> create task (validate body)
+- GET    /projects/:projectId/tasks/:taskId       -> get one task
+- PATCH  /projects/:projectId/tasks/:taskId       -> partial update (title/description/status/assignee)
+- DELETE /projects/:projectId/tasks/:taskId       -> delete task
+
+Cross-cutting requirements:
+- Every route except /health requires an Authorization: Bearer <token> header checked against an API_TOKEN environment variable; respond 401 otherwise.
+- CORS support for browser clients, including preflight.
+- Log method, path, status, and duration for every request.
+- Consistent JSON error responses ({ "error": { "code", "message" } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).
+- Unknown routes return 404 in the same error shape.
+
+Choose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.
+Output all the files it needs, including package.json.
+```
+
+</details>
+
 <table>
 <tr>
 <th width="50%">Cloudflare prompt — Hono 24/24</th>
@@ -26,70 +96,10 @@ Within-model variance was zero in both conditions.
 <td valign="top" width="50%">
 <a href="results/cloudflare-cc1211ac/summary.html"><img src="results/cloudflare-cc1211ac/summary.png" alt="Cloudflare prompt: Hono 24/24" width="100%"></a>
 <p>Folder: <a href="results/cloudflare-cc1211ac"><code>results/cloudflare-cc1211ac</code></a></p>
-<details>
-<summary><code>cloudflare</code> prompt</summary>
-<pre>Build a production-ready REST API on Cloudflare Workers in TypeScript for a &quot;team task board&quot; backend.
-
-Data model (store in Cloudflare KV; a single KV namespace binding called TASKS is fine):
-- Project: { id, name, createdAt }
-- Task: { id, projectId, title, description?, status: &quot;todo&quot; | &quot;in_progress&quot; | &quot;done&quot;, assignee?, createdAt, updatedAt }
-
-Endpoints, all under /api/v1:
-- GET    /health                                  -&gt; { &quot;ok&quot;: true }
-- GET    /projects                                -&gt; list projects
-- POST   /projects                                -&gt; create project (validate body)
-- GET    /projects/:projectId                     -&gt; get one project, 404 if missing
-- DELETE /projects/:projectId                     -&gt; delete project and its tasks
-- GET    /projects/:projectId/tasks?status=&amp;page=&amp;pageSize=  -&gt; list tasks with optional status filter + pagination
-- POST   /projects/:projectId/tasks               -&gt; create task (validate body)
-- GET    /projects/:projectId/tasks/:taskId       -&gt; get one task
-- PATCH  /projects/:projectId/tasks/:taskId       -&gt; partial update (title/description/status/assignee)
-- DELETE /projects/:projectId/tasks/:taskId       -&gt; delete task
-
-Cross-cutting requirements:
-- Every route except /health requires an Authorization: Bearer &lt;token&gt; header checked against an API_TOKEN secret binding; respond 401 otherwise.
-- CORS support for browser clients, including preflight.
-- Log method, path, status, and duration for every request.
-- Consistent JSON error responses ({ &quot;error&quot;: { &quot;code&quot;, &quot;message&quot; } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).
-- Unknown routes return 404 in the same error shape.
-
-Choose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.
-Output all the files it needs, including package.json and wrangler config.</pre>
-</details>
 </td>
 <td valign="top" width="50%">
 <a href="results/neutral-e655cb5d/summary.html"><img src="results/neutral-e655cb5d/summary.png" alt="Neutral prompt: Express 21/24, Fastify 3/24" width="100%"></a>
 <p>Folder: <a href="results/neutral-e655cb5d"><code>results/neutral-e655cb5d</code></a></p>
-<details>
-<summary><code>neutral</code> prompt</summary>
-<pre>Build a production-ready REST API in TypeScript for a &quot;team task board&quot; backend.
-
-Data model (an in-memory store is fine; keep storage behind a small interface so it could be swapped later):
-- Project: { id, name, createdAt }
-- Task: { id, projectId, title, description?, status: &quot;todo&quot; | &quot;in_progress&quot; | &quot;done&quot;, assignee?, createdAt, updatedAt }
-
-Endpoints, all under /api/v1:
-- GET    /health                                  -&gt; { &quot;ok&quot;: true }
-- GET    /projects                                -&gt; list projects
-- POST   /projects                                -&gt; create project (validate body)
-- GET    /projects/:projectId                     -&gt; get one project, 404 if missing
-- DELETE /projects/:projectId                     -&gt; delete project and its tasks
-- GET    /projects/:projectId/tasks?status=&amp;page=&amp;pageSize=  -&gt; list tasks with optional status filter + pagination
-- POST   /projects/:projectId/tasks               -&gt; create task (validate body)
-- GET    /projects/:projectId/tasks/:taskId       -&gt; get one task
-- PATCH  /projects/:projectId/tasks/:taskId       -&gt; partial update (title/description/status/assignee)
-- DELETE /projects/:projectId/tasks/:taskId       -&gt; delete task
-
-Cross-cutting requirements:
-- Every route except /health requires an Authorization: Bearer &lt;token&gt; header checked against an API_TOKEN environment variable; respond 401 otherwise.
-- CORS support for browser clients, including preflight.
-- Log method, path, status, and duration for every request.
-- Consistent JSON error responses ({ &quot;error&quot;: { &quot;code&quot;, &quot;message&quot; } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).
-- Unknown routes return 404 in the same error shape.
-
-Choose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.
-Output all the files it needs, including package.json.</pre>
-</details>
 </td>
 </tr>
 </table>
