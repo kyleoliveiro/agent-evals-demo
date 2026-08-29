@@ -99,7 +99,7 @@ export function renderSummaryHtml(summary: EvalSummary): string {
   pre{white-space:pre-wrap;background:rgba(128,128,128,.1);padding:1rem;border-radius:6px;font-size:.8rem}
 </style></head><body>
 <h1>Framework adoption${summary.promptName ? ` <small>· ${esc(summary.promptName)} prompt</small>` : ''}</h1>
-<div class="meta">${runs} runs per model (see per-row totals) · ${models.length} models · run files linked in the table</div>
+<div class="meta">${runs} runs per model · ${models.length} models · run files linked in the table</div>
 <div class="legend">${legend}</div>
 ${bars}
 ${table}

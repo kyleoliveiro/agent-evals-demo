@@ -17,6 +17,17 @@ With "Cloudflare Workers" in the prompt every model picks Hono; remove "Cloudfla
 
 Within-model variance was zero in both conditions.
 
+<table>
+<tr>
+<th>Cloudflare prompt</th>
+<th>Neutral prompt</th>
+</tr>
+<tr>
+<td><a href="results/cloudflare-cc1211ac/summary.html"><img src="results/cloudflare-cc1211ac/summary.png" alt="Cloudflare prompt: Hono 24/24" width="100%"></a></td>
+<td><a href="results/neutral-e655cb5d/summary.html"><img src="results/neutral-e655cb5d/summary.png" alt="Neutral prompt: Express 21/24, Fastify 3/24" width="100%"></a></td>
+</tr>
+</table>
+
 ### Cloudflare prompt — Hono 24/24
 
 Folder: [`results/cloudflare-cc1211ac`](results/cloudflare-cc1211ac) · [summary.html](results/cloudflare-cc1211ac/summary.html)
