@@ -94,8 +94,6 @@ Output all the files it needs, including package.json.</pre>
 </tr>
 </table>
 
-Both prompts live in [`src/evals/prompts.ts`](src/evals/prompts.ts); they are built from shared fragments so they differ only in the platform-specific lines.
-
 ## How to run
 
 ```sh
