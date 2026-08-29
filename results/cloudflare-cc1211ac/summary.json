@@ -1,0 +1,39 @@
+{
+  "runs": 3,
+  "promptName": "cloudflare",
+  "prompt": "Build a production-ready REST API on Cloudflare Workers in TypeScript for a \"team task board\" backend.\n\nData model (store in Cloudflare KV; a single KV namespace binding called TASKS is fine):\n- Project: { id, name, createdAt }\n- Task: { id, projectId, title, description?, status: \"todo\" | \"in_progress\" | \"done\", assignee?, createdAt, updatedAt }\n\nEndpoints, all under /api/v1:\n- GET    /health                                  -> { \"ok\": true }\n- GET    /projects                                -> list projects\n- POST   /projects                                -> create project (validate body)\n- GET    /projects/:projectId                     -> get one project, 404 if missing\n- DELETE /projects/:projectId                     -> delete project and its tasks\n- GET    /projects/:projectId/tasks?status=&page=&pageSize=  -> list tasks with optional status filter + pagination\n- POST   /projects/:projectId/tasks               -> create task (validate body)\n- GET    /projects/:projectId/tasks/:taskId       -> get one task\n- PATCH  /projects/:projectId/tasks/:taskId       -> partial update (title/description/status/assignee)\n- DELETE /projects/:projectId/tasks/:taskId       -> delete task\n\nCross-cutting requirements:\n- Every route except /health requires an Authorization: Bearer <token> header checked against an API_TOKEN secret binding; respond 401 otherwise.\n- CORS support for browser clients, including preflight.\n- Log method, path, status, and duration for every request.\n- Consistent JSON error responses ({ \"error\": { \"code\", \"message\" } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).\n- Unknown routes return 404 in the same error shape.\n\nChoose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.\nOutput all the files it needs, including package.json and wrangler config.",
+  "frameworks": [
+    "Hono",
+    "Elysia",
+    "Express",
+    "Fastify",
+    "Koa",
+    "NestJS"
+  ],
+  "results": {
+    "openrouter/anthropic/claude-opus-4.6": {
+      "Hono": 3
+    },
+    "openrouter/anthropic/claude-opus-5": {
+      "Hono": 3
+    },
+    "openrouter/anthropic/claude-sonnet-4.6": {
+      "Hono": 3
+    },
+    "openrouter/anthropic/claude-sonnet-5": {
+      "Hono": 3
+    },
+    "openrouter/google/gemini-3.7-flash": {
+      "Hono": 3
+    },
+    "openrouter/moonshotai/kimi-k3": {
+      "Hono": 3
+    },
+    "openrouter/openai/gpt-5.6-sol": {
+      "Hono": 3
+    },
+    "openrouter/x-ai/grok-4.6": {
+      "Hono": 3
+    }
+  }
+}

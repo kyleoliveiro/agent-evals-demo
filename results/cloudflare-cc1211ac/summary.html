@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Framework adoption (cloudflare prompt) — 3 runs × 8 models</title>
+<style>
+  :root{color-scheme:light dark;font-family:system-ui,sans-serif;font-size:14px}
+  body{margin:0;padding:2rem;max-width:1100px;margin-inline:auto;line-height:1.4}
+  h1{font-size:1.4rem;margin:0 0 .25rem}
+  .meta{color:#868e96;margin-bottom:1.5rem}
+  .legend{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem;margin-bottom:1rem}
+  .key i{display:inline-block;width:.8em;height:.8em;border-radius:2px;margin-right:.4em;vertical-align:-1px}
+  .row{display:grid;grid-template-columns:220px 1fr;gap:.75rem;align-items:center;margin-bottom:.5rem}
+  .label{font-family:ui-monospace,monospace;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+  .bar{display:flex;height:1.6rem;border-radius:4px;overflow:hidden;background:rgba(128,128,128,.12)}
+  .seg{display:flex;align-items:center;justify-content:center;color:#fff;font-size:.75rem;white-space:nowrap;overflow:hidden}
+  table{border-collapse:collapse;width:100%;margin-top:2rem;font-variant-numeric:tabular-nums}
+  th,td{padding:.4rem .6rem;text-align:right;border-bottom:1px solid rgba(128,128,128,.25)}
+  th:first-child,td.model{text-align:left;font-family:ui-monospace,monospace;font-size:.85rem}
+  td.zero{color:#adb5bd}
+  td.hit{font-weight:600}
+  td.links{font-family:ui-monospace,monospace;font-size:.8rem;text-align:left}
+  small{color:#868e96;font-weight:400}
+  details{margin-top:2rem}
+  pre{white-space:pre-wrap;background:rgba(128,128,128,.1);padding:1rem;border-radius:6px;font-size:.8rem}
+</style></head><body>
+<h1>Framework adoption <small>· cloudflare prompt</small></h1>
+<div class="meta">3 runs per model (see per-row totals) · 8 models · run files linked in the table</div>
+<div class="legend"><span class="key"><i style="background:#e8590c"></i>Hono</span><span class="key"><i style="background:#7048e8"></i>Elysia</span><span class="key"><i style="background:#2f9e44"></i>Express</span><span class="key"><i style="background:#1971c2"></i>Fastify</span><span class="key"><i style="background:#0c8599"></i>Koa</span><span class="key"><i style="background:#c2255c"></i>NestJS</span><span class="key"><i style="background:#868e96"></i>None/Other</span></div>
+<div class="row"><div class="label" title="openrouter/anthropic/claude-opus-4.6">anthropic/claude-opus-4.6</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/anthropic/claude-opus-5">anthropic/claude-opus-5</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/anthropic/claude-sonnet-4.6">anthropic/claude-sonnet-4.6</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/anthropic/claude-sonnet-5">anthropic/claude-sonnet-5</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/google/gemini-3.7-flash">google/gemini-3.7-flash</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/moonshotai/kimi-k3">moonshotai/kimi-k3</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/openai/gpt-5.6-sol">openai/gpt-5.6-sol</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div><div class="row"><div class="label" title="openrouter/x-ai/grok-4.6">x-ai/grok-4.6</div><div class="bar"><div class="seg" style="width:100%;background:#e8590c" title="Hono: 3/3 (100%)">Hono 100%</div></div></div>
+<table><thead><tr><th>model</th><th>Hono</th><th>Elysia</th><th>Express</th><th>Fastify</th><th>Koa</th><th>NestJS</th><th>None/Other</th><th>runs</th></tr></thead><tbody><tr><td class="model">openrouter/anthropic/claude-opus-4.6</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__anthropic__claude-opus-4.6/run-01.md">01</a> <a href="./openrouter__anthropic__claude-opus-4.6/run-02.md">02</a> <a href="./openrouter__anthropic__claude-opus-4.6/run-03.md">03</a></td></tr><tr><td class="model">openrouter/anthropic/claude-opus-5</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__anthropic__claude-opus-5/run-01.md">01</a> <a href="./openrouter__anthropic__claude-opus-5/run-02.md">02</a> <a href="./openrouter__anthropic__claude-opus-5/run-03.md">03</a></td></tr><tr><td class="model">openrouter/anthropic/claude-sonnet-4.6</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__anthropic__claude-sonnet-4.6/run-01.md">01</a> <a href="./openrouter__anthropic__claude-sonnet-4.6/run-02.md">02</a> <a href="./openrouter__anthropic__claude-sonnet-4.6/run-03.md">03</a></td></tr><tr><td class="model">openrouter/anthropic/claude-sonnet-5</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__anthropic__claude-sonnet-5/run-01.md">01</a> <a href="./openrouter__anthropic__claude-sonnet-5/run-02.md">02</a> <a href="./openrouter__anthropic__claude-sonnet-5/run-03.md">03</a></td></tr><tr><td class="model">openrouter/google/gemini-3.7-flash</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__google__gemini-3.7-flash/run-01.md">01</a> <a href="./openrouter__google__gemini-3.7-flash/run-02.md">02</a> <a href="./openrouter__google__gemini-3.7-flash/run-03.md">03</a></td></tr><tr><td class="model">openrouter/moonshotai/kimi-k3</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__moonshotai__kimi-k3/run-01.md">01</a> <a href="./openrouter__moonshotai__kimi-k3/run-02.md">02</a> <a href="./openrouter__moonshotai__kimi-k3/run-03.md">03</a></td></tr><tr><td class="model">openrouter/openai/gpt-5.6-sol</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__openai__gpt-5.6-sol/run-01.md">01</a> <a href="./openrouter__openai__gpt-5.6-sol/run-02.md">02</a> <a href="./openrouter__openai__gpt-5.6-sol/run-03.md">03</a></td></tr><tr><td class="model">openrouter/x-ai/grok-4.6</td><td class="hit">100% <small>(3/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="zero">0% <small>(0/3)</small></td><td class="links"><a href="./openrouter__x-ai__grok-4.6/run-01.md">01</a> <a href="./openrouter__x-ai__grok-4.6/run-02.md">02</a> <a href="./openrouter__x-ai__grok-4.6/run-03.md">03</a></td></tr></tbody></table>
+<details><summary>Prompt</summary><pre>Build a production-ready REST API on Cloudflare Workers in TypeScript for a &quot;team task board&quot; backend.
+
+Data model (store in Cloudflare KV; a single KV namespace binding called TASKS is fine):
+- Project: { id, name, createdAt }
+- Task: { id, projectId, title, description?, status: &quot;todo&quot; | &quot;in_progress&quot; | &quot;done&quot;, assignee?, createdAt, updatedAt }
+
+Endpoints, all under /api/v1:
+- GET    /health                                  -&gt; { &quot;ok&quot;: true }
+- GET    /projects                                -&gt; list projects
+- POST   /projects                                -&gt; create project (validate body)
+- GET    /projects/:projectId                     -&gt; get one project, 404 if missing
+- DELETE /projects/:projectId                     -&gt; delete project and its tasks
+- GET    /projects/:projectId/tasks?status=&amp;page=&amp;pageSize=  -&gt; list tasks with optional status filter + pagination
+- POST   /projects/:projectId/tasks               -&gt; create task (validate body)
+- GET    /projects/:projectId/tasks/:taskId       -&gt; get one task
+- PATCH  /projects/:projectId/tasks/:taskId       -&gt; partial update (title/description/status/assignee)
+- DELETE /projects/:projectId/tasks/:taskId       -&gt; delete task
+
+Cross-cutting requirements:
+- Every route except /health requires an Authorization: Bearer &lt;token&gt; header checked against an API_TOKEN secret binding; respond 401 otherwise.
+- CORS support for browser clients, including preflight.
+- Log method, path, status, and duration for every request.
+- Consistent JSON error responses ({ &quot;error&quot;: { &quot;code&quot;, &quot;message&quot; } }) for validation failures (400), not found (404), method not allowed (405), and unexpected errors (500).
+- Unknown routes return 404 in the same error shape.
+
+Choose whatever libraries, frameworks, or tooling you think are appropriate for this kind of application.
+Output all the files it needs, including package.json and wrangler config.</pre></details>
+</body></html>
