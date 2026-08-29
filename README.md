@@ -11,7 +11,11 @@ The task is intentionally non-trivial: for a single `GET /health` route a bare `
 
 ## Findings
 
-3 runs per model, 8 models, 48 generations, 0 errors. Every reply is committed under [`results/`](results/) so each classification can be audited.
+**Mentioning the platform/deployment target heavily influences the choice of framework that the model uses.**
+
+With "Cloudflare Workers" in the prompt every model picks Hono; remove "Cloudflare" from the prompt, and Hono disappears. Express becomes the near-universal default, with GPT-5.6 Sol being the only exception (picking Fastify). 
+
+Within-model variance was zero in both conditions.
 
 ### Cloudflare prompt — Hono 24/24
 
@@ -42,8 +46,6 @@ Folder: [`results/neutral-e655cb5d`](results/neutral-e655cb5d) · [summary.html]
 | `moonshotai/kimi-k3` | 0 | 0 | **3/3** | 0 | 0 | 0 | 0 |
 | `x-ai/grok-4.6` | 0 | 0 | **3/3** | 0 | 0 | 0 | 0 |
 | `google/gemini-3.7-flash` | 0 | 0 | **3/3** | 0 | 0 | 0 | 0 |
-
-**Takeaway:** the platform mention drives the choice entirely. With "Cloudflare Workers" in the prompt every model picks Hono; remove it and Hono disappears — Express becomes the near-universal default, with GPT-5.6 Sol the lone Fastify holdout. Within-model variance was zero in both conditions.
 
 ## Prompts
 
@@ -117,8 +119,6 @@ Output all the files it needs, including package.json.
 
 </details>
 
-Both live in [`src/evals/prompts.ts`](src/evals/prompts.ts); they are built from shared fragments so they cannot drift apart except in the platform-specific lines.
-
 ## How to run
 
 ```sh
@@ -128,31 +128,8 @@ pnpm evals             # cloudflare prompt
 pnpm evals:neutral     # neutral prompt
 ```
 
-Defaults: 8 models × 3 runs. Override with env vars:
-
-```sh
-EVAL_RUNS=10 EVAL_MODELS="openrouter/anthropic/claude-sonnet-5,openrouter/moonshotai/kimi-k3" pnpm evals
-```
-
-Models are OpenRouter IDs prefixed with `openrouter/`. Pi's bundled OpenRouter catalog lags upstream; models missing from it (currently `x-ai/grok-4.6`, `google/gemini-3.7-flash`) are added to the provider built in [`src/providers/openrouter.ts`](src/providers/openrouter.ts). `pnpm test` checks that every default model resolves.
-
-Each run and a per-model summary are printed to the terminal:
-
-```
-▶ openrouter/anthropic/claude-sonnet-5
-  openrouter/anthropic/claude-sonnet-5  run 01: Hono  (84s)
-  openrouter/anthropic/claude-sonnet-5  run 02: None/Other  (91s)
-...
-
-Framework adoption by model:
-  model                                        Hono        Elysia       Express       Fastify           Koa        NestJS    None/Other
-  openrouter/anthropic/claude-sonnet-5     67% (2/3)      0% (0/3)      0% (0/3)      0% (0/3)      0% (0/3)      0% (0/3)     33% (1/3)
-```
-
 ## Output
 
-Every generated reply is saved to `results/<prompt>-<hash>/<model>/run-NN.md` (with the detected framework in a header comment) alongside `summary.json` and a self-contained `summary.html` (open it in a browser for a chart + table with links to each run). `<hash>` is a short SHA-256 of the prompt text, so editing a prompt starts a fresh folder while re-running the same prompt appends to the existing one (run numbering continues). Override the base directory with `EVAL_OUT_DIR`.
-
-To merge folders or recover from an interrupted run, copy `<model>/` directories into one folder and rebuild its summary from the run headers: `pnpm report results/<folder>`.
-
-`None/Other` means the generated code used no framework, or one not in the detection list (`FRAMEWORKS` in [`src/evals/framework-adoption.eval.ts`](src/evals/framework-adoption.eval.ts)). Runs that error (auth, rate limit, provider outage) or exceed `EVAL_RUN_TIMEOUT_MS` (default 10 min; `0` disables) get an extra `Error` column rather than aborting the suite. `summary.json`/`.html` are rewritten after each model finishes, so partial results survive an interrupted run.
+- Generated outputs are saved to `results/<prompt>-<hash>/<model>/run-NN.md`, alongside `summary.json` and a self-contained `summary.html`
+- `<hash>` is a short SHA-256 of the prompt text.
+- Override the base directory with `EVAL_OUT_DIR`.
