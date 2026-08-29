@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "types": ["vitest/globals"]
   },
-  "include": ["src", "vitest.evals.config.ts"]
+  "include": ["src", "vitest.config.ts", "vitest.evals.config.ts"]
 }
